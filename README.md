@@ -73,3 +73,6 @@ The application uses specific background colors to help you visualize file conte
 
 
 * **Dark Blue:** Standard text selection.
+## License
+
+Dupe Check is distributed under the [PolyForm Noncommercial License 1.0.0](./LICENSE), copyright (c) 2026 ClinicalSuppression.
