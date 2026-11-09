@@ -9,6 +9,21 @@ try:
 except (ImportError, RuntimeError):
     DND_AVAILABLE = False
 
+def set_window_icon(root):
+    """Set the window/taskbar icon from the bundled asset (best effort)."""
+    try:
+        base = os.path.dirname(os.path.abspath(__file__))
+        ico = os.path.join(base, "Dupe_Check.ico")
+        if os.path.exists(ico):
+            root.iconbitmap(ico)
+            return
+        png = os.path.join(base, "Dupe_Check.png")
+        if os.path.exists(png):
+            root.iconphoto(True, tk.PhotoImage(file=png))
+    except Exception:
+        pass  # Icon is cosmetic; never block startup.
+
+
 class DuplicateRemoverApp:
     def __init__(self, root, dnd_enabled):
         self.root = root
@@ -349,6 +364,8 @@ if __name__ == "__main__":
             
     if not root:
         root = tk.Tk()
-        
+
+    set_window_icon(root)
+
     app = DuplicateRemoverApp(root, dnd_enabled=dnd_working)
     root.mainloop()
